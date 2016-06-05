@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="cn.symxl" namespace="/" extends="struts-default">	
+		<default-action-ref name="pre_login"></default-action-ref>
+		<global-results>
+			<result name="error">/error.jsp</result>
+		</global-results>
+		
+		<action name="pre_login" class="cn.symxl.action.Login">
+			<result>/login.jsp</result>
+		</action>
+		<action name="login" class="cn.symxl.action.Login" method="login">
+			<result name="success">/index.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">pre_login</param>
+				<param name="user.username">${user.username}</param>
+				<param name="user.password">${user.password}</param>
+			</result>
+		</action>
+
+	</package>
+
+
+</struts>
